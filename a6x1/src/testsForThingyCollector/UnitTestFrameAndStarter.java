@@ -25,13 +25,13 @@ import _untouchable_.thingy.*;
 
 
 public class UnitTestFrameAndStarter {
-    /*
+    
     @BeforeAll
     public static void runSetupBeforeAnyUnitTestStarts(){
         assert requestedNumberOfDifferentItems == 5 : "Configuration ERROR - 5 was expected as requested number of different items";
         //\=> Collector_I.requestedNumberOfDifferentItems constant has expected value
     }//method()
-    */
+    
     
     
     

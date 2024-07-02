@@ -18,10 +18,10 @@ public class Collector implements Collector_I {
         this.memoryThingyList.add(item);
 
 
-        /*      TEST PRINT: What do we get?
-         *       for ( Item temp : this.memoryThingyList )
-         *           System.out.printf("BEKOMMEN: %7s  %7s  %7s  %5d  %14d\n", temp.getColor(), temp.getSize(), temp.getWeight(), temp.getValue(), temp.hashCode());
-         */      
+             // TEST PRINT: What do we get?
+                for ( Item temp : this.memoryThingyList )
+                    System.out.printf("BEKOMMEN: %7s  %7s  %7s  %5d  %14d\n", temp.getColor(), temp.getSize(), temp.getWeight(), temp.getValue(), temp.hashCode());
+               
 
         /*
          * Put Cards in a Memory. 
@@ -38,7 +38,7 @@ public class Collector implements Collector_I {
 
                 if (thingySet.size() == 5) { 
                     
-                    if (false) schmuddelPrint(); // Dirty Print - what is in Memory - What is in List? 
+                    if (true) schmuddelPrint(); // Dirty Print - what is in Memory - What is in List? 
                     
                     return thingySet;
                 }

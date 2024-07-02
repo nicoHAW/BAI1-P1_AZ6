@@ -12,7 +12,7 @@ package testsForThingyCollector;
 //
 
 
-/*
+//##/*
 import static org.junit.jupiter.api.Assertions.*;
 import static thingyCollector.Collector_I.*;
 //
@@ -38,7 +38,7 @@ public class UnitTestFrameAndStarter {
     
     /**
      * Ganz einfache Testcase mit 5 unterschiedlichen Items
-    //##* /
+    */
     @Test
     public void testFiveDifferentItemsSimple(){
         
@@ -62,12 +62,12 @@ public class UnitTestFrameAndStarter {
         }//for
         assertTrue( computedResult.isEmpty() );
     }//method()
-    
+
     
     /**
      * Erzeuge alle Kombination von Color x Size x Weight
      * Jedes 5.Mal gibt es 5 unterschiedliche Items
-    //##* /
+    */
     @Test
     public void testFiveDifferentItemsWithoutDuplicates(){
         
@@ -119,5 +119,5 @@ public class UnitTestFrameAndStarter {
     // ...
     
 }//class
-*/
+//*##/
 

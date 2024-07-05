@@ -5,7 +5,7 @@ package testsForWordCounter;
 //Sowie unmittelbar nachfolgend "//" for dem import
 
 
-//import wordCounter.WordCounter;
+import wordCounter.WordCounter;
 
 
 
@@ -17,7 +17,7 @@ package testsForWordCounter;
  * @version  2021/05/09 #2
  */
 public class TestFrameAndStarter {
-    /*
+    
     //
     // ACHTUNG!:
     // =========
@@ -54,5 +54,5 @@ public class TestFrameAndStarter {
         // alternativ falls printStatistic() als static deklariert wurde
         //WordCounter.printStatistic( text );
     }//method()
-    */
+    
 }//class

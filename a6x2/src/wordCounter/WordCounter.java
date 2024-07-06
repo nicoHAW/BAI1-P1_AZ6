@@ -9,32 +9,37 @@ public class WordCounter {
 
 
 
-    
+
     //----- CONSTRUCTOR -----
     public WordCounter() {
         this.wordMap = new HashMap<Word, Counter>();
     }//constructor
 
 
-    
-    
+
+
     //----- METHODS -----
     public void printStatistic( String givenPath ) { 
+        //VARIABLES
         this.sourcePath = givenPath;
-        getWord(givenPath);
-    }//printStatistics
+        WordGrabber nextWord = new WordGrabber(sourcePath);
 
-    private void getWord(String textPath) {
-        WordGrabber nextWord = new WordGrabber(textPath);
-
+        // get words
         while (nextWord.hasNext()) {
             Word newWord = new Word(nextWord.next());
 
-
-
+            // put Word in Map
+            
+            
         }
+    }//printStatistics
 
-    }
+    void iPutInMap(Word CurrentWord) {
+        
+    
+
+
+}
 
 
 }

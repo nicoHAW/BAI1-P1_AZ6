@@ -3,8 +3,7 @@ package wordCounter;
 public class Counter {
 
     //----- VARIABLES -----
-    int countValue;
-
+    private int countValue;
 
 
 
@@ -26,16 +25,20 @@ public class Counter {
 
 
 
+
+
     //----- GETTER -----
     public int getcountValue() {
         return this.countValue;
     }//getCountValue
-    
-    
-    
+
+
+
+
+    //----- OVERRIDE -----
     @Override
     public String toString() {
-        return String.format("[<%s> : countValue = %d]", Counter.class.getSimpleName(), countValue);
+        return String.format("%d", countValue);
     }//toString
 
 }//class

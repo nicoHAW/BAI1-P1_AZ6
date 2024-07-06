@@ -1,46 +1,65 @@
 package wordCounter;
 
 public class Word {
-    
+
     //----- VARIABLES -----
     private String word;
-    private Counter wordCounter;
-    
-    
-    
-    
-  //----- CONSTRUCTOR -----
+
+
+
+
+    //----- CONSTRUCTOR -----
     public Word(String givenWord) {
         this.word = givenWord.toLowerCase();
-        this.wordCounter = new Counter();
     } //word
 
-    
-    
-    
-    
-  //----- METHODS -----
+
+
+
+    //----- METHODS -----
     public String getWord() {
         return this.word;
     }//getWord
 
-    
-    
-    public Counter getWordCounter() {
-        return this.getWordCounter();
-    }//getwordCounter
-    
-    
-    
-    public int getWordValue() {
-        return this.wordCounter.countValue;
-    }//getWordValue
+
+
+    public int compareTo(String other) {
+        return this.word.compareTo(other);
+    }
+
     
     
     
+    //---- OVERRIDE METHODS -----
+    @Override
+    public boolean equals( Object other ) {
+        //same Object?
+        if (this == other) return true;
+
+        //is null?
+        if (other == null) return false;
+
+        //same Class?
+        if (other.getClass() != this.getClass()) return false;
+
+        //Typconvertion
+        Word otherWord = (Word) other;
+
+        return (this.word.equals(otherWord.word));
+    }
+
+
+
+    @Override
+    public int hashCode() {
+        return this.word.hashCode();
+    }
+
+
+
     @Override
     public String toString() {
-        return String.format("[<%s> : Word = %s  WordCounter = %s  WordCount = %d]", Word.class.getSimpleName(), word, wordCounter, wordCounter.countValue);
+        return String.format("<%s>: ", word);
     }//toString
-    
+
 }

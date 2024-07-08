@@ -36,7 +36,7 @@ public class Node<T> {
     //----- | GETTER | SETTER | STANDARDS | -----
     @Override
     public int hashCode() {
-        return Objects.hash(data);
+        return Objects.hash(this.data);
     }
 
 

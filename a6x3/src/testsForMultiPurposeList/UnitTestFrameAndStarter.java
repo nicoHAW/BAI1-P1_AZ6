@@ -30,19 +30,13 @@ import static media.Content.MOVIE;
 import static media.Content.VIDEO;
 import static media.Format.NTSC;
 import static media.Format.PAL;
-//
-//
-import media.CD;
-import media.Disc;
-import version.GivenCodeVersion;
-import media.DVD;
 
 //###
 //###   Weiterhin muss multiPurposeList.MultiPurposeList<T> implementiert werden.
 //###
 
 
-
+import multiPurposeList.*;
 
 
 
@@ -57,23 +51,32 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
 //
 //
 import java.time.Duration;
 //
 import java.util.HashMap;
 import java.util.Map;
+
 //
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.function.Executable;
 
-import iSupportStuff.EnvironmentAnalyzer;
-import iSupportStuff.Herald;
-import iSupportStuff.Version;
+//
+//
+import media.CD;
+import media.DVD;
+import media.Disc;
+import multiPurposeList.MultiPurposeList;
+import multiPurposeList.MultiPurposeList_I;
+import stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
+import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
+import stuffBeginnersDontHaveToUnderstand.Herald;
 
 
 

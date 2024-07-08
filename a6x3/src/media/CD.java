@@ -4,7 +4,6 @@ import java.util.Objects;
 
 import org.junit.jupiter.api.DisplayNameGenerator.Simple;
 
-import media.Disc.MediaType;
 
 public class CD extends Disc {
 
@@ -13,72 +12,47 @@ public class CD extends Disc {
 
 
     //----- CONSTRUCTOR -----
-    @Override
-    public void Disc() {
-        disc = DiscType.CD;
-        media = MediaType.AUDIO;
-    }
 
-    
-    
-    public void Disc(String titel) {
-        Disc();
-
-        this.titel = titel;
-    }
-    
-    
-    
-    public void Disc(String titel, String interpret) {
-        Disc(titel);
-        this.interpret = interpret;
-    }
-    
-    
-    
-    
-    public void Disc(String titel, MediaType media, String interpret) {
+    public CD(String titel, Content media, String interpret) {
         //assert
-        assert media == MediaType.AUDIO : "CD needs Media Type Audio";
+        assert media == Content.AUDIO : "CD needs Media Type Audio";
 
-        disc = DiscType.CD;
 
         this.media = media;
         this.titel = titel;
         this.interpret = interpret;
     }
-    
-    
 
-    public void Disc(String titel, MediaType media) {
+
+
+    public void CD(String titel, Content media) {
         //assert
-        assert media == MediaType.AUDIO : "CD needs Media Type Audio";
+        assert media == Content.AUDIO : "CD needs Media Type Audio";
 
-        disc = DiscType.CD;
 
         this.media = media;
         this.titel = titel;
     }
 
 
-    
+
     public String getInterpret() {
         return this.interpret;
     };
-    
-    
+
+
 
     @Override
     public int hashCode() {
-        return Objects.hash(titel, interpret, disc, media);
+        return Objects.hash(titel, interpret, media);
     }
-    
-    
-    
-    
+
+
+
+
     @Override
     public String toString() {
-       return String.format("[<%s> : Titel: %s   Interpret: %s   Medientyp: %s   Disctyp: %s]", DVD.class.getSimpleName(), this.titel, this.interpret, this.media, this.disc);
+        return String.format("[<%s> : Titel: %s   Interpret: %s   Medientyp: %s]", DVD.class.getSimpleName(), this.titel, this.interpret, this.media);
     }
 
 
@@ -87,16 +61,16 @@ public class CD extends Disc {
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
-        
-        
+
+
         if (obj == null)
             return false;
-        
-        
+
+
         if (getClass() != obj.getClass())
             return false;
         CD other = (CD) obj;
-        
-        return (disc == other.disc) && (media == other.media) && (titel.equals(other.titel) && interpret.equals(other.interpret));
+
+        return (media == other.media) && (titel.equals(other.titel) && interpret.equals(other.interpret));
     }
 }

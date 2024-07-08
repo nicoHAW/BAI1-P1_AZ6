@@ -5,14 +5,17 @@ import java.util.Objects;
 public class Disc {
 
     //----- VARIABLES -----
-   String titel;
-   Content media;
+   final String titel;
+   final Content media;
     
     
     
     
     //----- CONSTRUCTOR -----
-    
+    public Disc(String titel, Content media) {
+        this.titel = titel;
+        this.media = media;
+    }
     
     
     

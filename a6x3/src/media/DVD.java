@@ -13,11 +13,7 @@ public class DVD extends Disc {
     //----- CONSTRUCTOR -----
 
     public DVD(String titel, Content media, Format format ) {
-        //--- assert ---
-        assert media.equals(Content.MOVIE) || media.equals(Content.VIDEO) : "Media Type for DVD hast to be MOVIE or VIDEO";
-        
-        this.titel = titel;
-        this.media = media;
+        super(titel, media);
         this.format = format;
     }  
 

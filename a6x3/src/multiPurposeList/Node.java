@@ -22,26 +22,25 @@ public class Node<T> {
 
 
 
-
-
-
-
-
-
     //----- METHODS -----
 
 
-
-
     //----- | GETTER | SETTER | STANDARDS | -----
+
     @Override
     public int hashCode() {
+<<<<<<< HEAD
         return Objects.hash(this.data);
     }
 
+=======
+        return Objects.hash(data);
+    } //hashCode
+>>>>>>> 5b642881e03e7caaa335ded01c3d84dea9900361
 
 
 
+    
     @Override
     public boolean equals(Object other) {
         //same Object?
@@ -58,8 +57,16 @@ public class Node<T> {
 
         //same content?
         Node<T> otherNode = (Node<T>) other;
-        return this.data.equals(otherNode.data);
+        return this.data.equals(otherNode.data);    //compare if data are same
     }// equals
 
+
+
+// deliver data, next and prev
+    @Override
+    public String toString() {
+        return String.format("[<%s> : Daten = %s,    Next = %s,    prev = %s]", this.data,this.next, this.prev ); 
+
+    } //toString
 
 }//class

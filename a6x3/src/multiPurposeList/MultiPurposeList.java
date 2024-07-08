@@ -43,6 +43,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
     }//getNo
 
 
+
     //get Data from requested position and remove node
     @Override
     public T extractNo(int requestedPosition) {
@@ -85,6 +86,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         assert this.listSize >= requestedPosition : "position out of range";
 
         Node<T> newNode = new Node<T>(info);    //create new node with info as data
+        this.listSize++;                        //increase ListSize after adding new Nose.
 
         // special cases
         if (this.listSize == 0) {   //only object in List.
@@ -99,7 +101,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             newNode.prev = tail;
             tail = newNode;
         } else {                        // put at requested positon
-            
+
             Node<T> tempNode = iGetNodeNo(requestedPosition); // get Node from Position
             newNode.next = tempNode;        // make old Node on position newNodes next
             newNode.prev = tempNode.prev;   // make old Nodes prev on position newNodes p
@@ -110,30 +112,53 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
 
     @Override
     public T setNo(int requestedPosition, T info) {
+        //--- asserts ---
+        assert info != null : "Data can't be null";
+        assert this.listSize >= requestedPosition : "requestedPosition out of List";
+
+
+        Node<T> tempNode = iGetNodeNo(requestedPosition);       //get Node from Position
+        T tempData = tempNode.data;                             //store request Data in 
+        tempNode.data = info;                                   //set Data
+
+        return tempData;
+
+    } //setNo
 
 
 
-        return null;
-    }
-
-
+    //remove node by data object
     @Override
     public boolean remove(T info) {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        //--- assert ---
+        assert info != null : "Data can't be null";
 
+        Node<T> tempNode = iSearchNode(info); // get Node with requested Data
+        tempNode.data = null;
+
+        return iRemoveNode(tempNode);       //remove Node and get boolean about success
+    } //
+
+
+
+    //remove Node by position
     @Override
     public void removeNo(int requstedPosition) {
-        // TODO Auto-generated method stub
+        //--- assert ---
+        assert this.listSize > requstedPosition : "requstedPosition out of List";   //pos can't be bigger because position of last node is ListSize-1
 
-    }
+        if ( this.listSize > requstedPosition ) {         //last Object is listSize-1
+            Node<T> tempNode = iGetNodeNo(requstedPosition); //get Node from position
+            tempNode.data = null;                            //set data to null
+
+            iRemoveNode(tempNode);                          //delete Node 
+        }//if
+    } //removeNo
 
     @Override
     public boolean isEmpty() {
-        // TODO Auto-generated method stub
-        return false;
-    }
+        return (this.listSize == 0);
+    }//isEmpty
 
     //reset List to beginning state. 
     @Override
@@ -142,6 +167,9 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         this.tail = null;
         this.listSize = 0;
     } //clear
+
+
+
 
     // --- //----- HELPER -----
     private Node<T> iSearchNode(T wantedData) {
@@ -153,7 +181,6 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         } //while
 
         return wantedNode;
-
     } // iSearchNode
 
 
@@ -167,9 +194,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         } //for
 
         return wantedNode;
-
-    }
-
+    }//iGetNodeno
 
 
 
@@ -183,7 +208,8 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             this.listSize--;                    //decrease List Size
 
             return true;
-        }
+        }//iRemoveNode
+
 
         //givenNode is Last Node (tail)
         if (givenNode == this.tail) {           //Node is tail if Node == tail
@@ -195,6 +221,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
 
             return true;
         } //if
+
 
         //givenNode only Node (listSize == 0)
         if (givenNode.next == null && givenNode.prev == null) { //given Node is only Node if next and prev are null also means that it's head and tail
@@ -220,20 +247,16 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             this.listSize--;                        //decrease List Size
 
             return true;
-
-        } //if
+        }//if
 
         return false;
-    }
+    }//iRemoveNode
 
 
 
-
-
-    // --- //----- GETTER SETTER BASICS -----
     @Override
     public int getSize() {
         return listSize;
-    }
+    }//getSize
 
 }

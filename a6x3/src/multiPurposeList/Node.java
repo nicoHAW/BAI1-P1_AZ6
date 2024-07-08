@@ -29,14 +29,9 @@ public class Node<T> {
 
     @Override
     public int hashCode() {
-<<<<<<< HEAD
-        return Objects.hash(this.data);
-    }
-
-=======
         return Objects.hash(data);
-    } //hashCode
->>>>>>> 5b642881e03e7caaa335ded01c3d84dea9900361
+    }//hashcode
+
 
 
 

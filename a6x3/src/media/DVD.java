@@ -1,13 +1,14 @@
 package media;
 
 import java.util.Objects;
-
 import org.junit.jupiter.api.DisplayNameGenerator.Simple;
+
+
 
 public class DVD extends Disc {
 
     //----- VARIABLES -----
-    private Format format;
+    private final Format format;
 
     
     //----- CONSTRUCTOR -----
@@ -28,25 +29,28 @@ public class DVD extends Disc {
     
     @Override
     public String toString() {
-       return String.format("[<%s> : Titel: %s   Format: %s   Medientyp: %s]", DVD.class.getSimpleName(), this.titel, this.format, this.media);
+       return String.format("[<%s> : Titel: %s   Medientyp: %s   Format: %s]", DVD.class.getSimpleName(), this.titel, this.media, this.format);
     }
 
 
 
     @Override
     public boolean equals(Object obj) {
+        //same object?
         if (this == obj)
             return true;
         
-        
+        //object null?
         if (obj == null)
             return false;
         
         
+        //same class?
         if (getClass() != obj.getClass())
             return false;
-        DVD other = (DVD) obj;
         
+        //convert and check if same
+        DVD other = (DVD) obj;
         return (media == other.media) && (titel.equals(other.titel) && format.equals(other.format));
     }
 }

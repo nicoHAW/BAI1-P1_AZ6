@@ -8,13 +8,13 @@ package testsForMultiPurposeList;
 //Fuer die Inbetriebnahme:
 // 1.)  In Zeile 19   /*  löschen
 // 2.)  Ganz am Ende  */  löschen
-// 3.)  replace  /**  with  /**
-// 4.)  replace  */  with  */
+// 3.)  replace  //##**  with  /**
+// 4.)  replace  XX#*#/  with  */
 //
 //
 //Zum Auscodieren:
-// 1.)  replace  /**  with  /**
-// 2.)  replace  */   with  */
+// 1.)  replace  /**  with  //##**
+// 2.)  replace  */   with  XX#*#/
 //
 
 
@@ -30,14 +30,22 @@ import static media.Content.MOVIE;
 import static media.Content.VIDEO;
 import static media.Format.NTSC;
 import static media.Format.PAL;
+//
+//
+import media.CD;
+import media.Disc;
+import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
+import media.DVD;
+
+
 
 //###
 //###   Weiterhin muss multiPurposeList.MultiPurposeList<T> implementiert werden.
 //###
 
 
-import multiPurposeList.*;
 
+import multiPurposeList.*;
 
 
 //#############################################################################
@@ -51,32 +59,23 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-
 //
 //
 import java.time.Duration;
 //
 import java.util.HashMap;
 import java.util.Map;
-
 //
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.function.Executable;
 
-//
-//
-import media.CD;
-import media.DVD;
-import media.Disc;
-import multiPurposeList.MultiPurposeList;
-import multiPurposeList.MultiPurposeList_I;
 import stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
-import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
 import stuffBeginnersDontHaveToUnderstand.Herald;
+import stuffBeginnersDontHaveToUnderstand.Version;
 
 
 
@@ -1217,12 +1216,14 @@ public class UnitTestFrameAndStarter {
     }//method()
     
     
+    /*
+     
     
     //##########################################################################
-    /**
+    //##**
      * ...
      * 
-     */
+     XX#*#/
     @Test
     @Order(200_0110)
     public void testSubList1(){
@@ -1261,10 +1262,10 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    /**
+    //##**
      * ...
      * 
-     */
+     XX#*#/
     @Test
     @Order(200_0120)
     public void testSubList2(){
@@ -1374,15 +1375,15 @@ public class UnitTestFrameAndStarter {
             "computation took too long"
         );
     }//method()
-    */
+    XX#*#/
     
     
     
     //##########################################################################
-    /**
+    //##**
      * ...
      * 
-     */
+     XX#*#/
     @Test
     @Order(999_0910)
     public void multipleObjects(){
@@ -1399,7 +1400,7 @@ public class UnitTestFrameAndStarter {
                     //
                     // chapter: test basic/main stuff (ping pong)
                     //
-                    /*scope*/{
+                    /*scopeXX#*#/{
                         final int objCnt = 3;
                         @SuppressWarnings("unchecked")
                         final MultiPurposeList_I<Long>[] list = (MultiPurposeList_I<Long>[])( new MultiPurposeList_I[objCnt] );
@@ -1412,7 +1413,7 @@ public class UnitTestFrameAndStarter {
                     //
                     // chapter: test reverse()
                     //
-                    /*scope*/{
+                    /*scopeXX#*#/{
                         final int objCnt = 3;
                         @SuppressWarnings("unchecked")
                         final MultiPurposeList_I<Long>[] list = (MultiPurposeList_I<Long>[])( new MultiPurposeList_I[objCnt] );
@@ -1450,7 +1451,7 @@ public class UnitTestFrameAndStarter {
                                     }//for
                                 }//for
                             }//for
-                            */
+                            XX#*#/
                             
                             for( int objId = 0;  objId<objCnt;  objId++ ){
                                 list[objId].clear();
@@ -1466,5 +1467,5 @@ public class UnitTestFrameAndStarter {
             "computation took too long"
         );
     }//method()
-    
+     */
 }//class

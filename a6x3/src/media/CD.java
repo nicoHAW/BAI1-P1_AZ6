@@ -1,7 +1,6 @@
 package media;
 
 import java.util.Objects;
-
 import org.junit.jupiter.api.DisplayNameGenerator.Simple;
 
 
@@ -17,7 +16,7 @@ public class CD extends Disc {
 
     public CD(String titel, Content media, String interpret) {
         super(titel, media);
-        
+
         this.interpret = interpret;
     }
 
@@ -47,17 +46,19 @@ public class CD extends Disc {
 
     @Override
     public boolean equals(Object obj) {
+        //same object?
         if (this == obj)
             return true;
 
-
+        //object null?
         if (obj == null)
             return false;
 
-
+        //same class?
         if (getClass() != obj.getClass())
             return false;
-        
+
+        //convert and check if same
         CD other = (CD) obj;
         return (media == other.media) && (titel.equals(other.titel) && interpret.equals(other.interpret));
     }

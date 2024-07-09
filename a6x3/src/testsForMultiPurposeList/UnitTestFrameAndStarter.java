@@ -16,7 +16,7 @@ package testsForMultiPurposeList;
 // 1.)  replace  /**  with  //##**
 // 2.)  replace  */   with  XX#*#/
 //
-/*
+
 
 //#############################################################################
 //###
@@ -34,8 +34,10 @@ import static media.Format.PAL;
 //
 import media.CD;
 import media.Disc;
-import version.GivenCodeVersion;
+import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
 import media.DVD;
+
+
 
 //###
 //###   Weiterhin muss multiPurposeList.MultiPurposeList<T> implementiert werden.
@@ -43,7 +45,7 @@ import media.DVD;
 
 
 
-
+import multiPurposeList.*;
 
 
 //#############################################################################
@@ -71,15 +73,15 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 import org.junit.jupiter.api.function.Executable;
 
-import iSupportStuff.EnvironmentAnalyzer;
-import iSupportStuff.Herald;
-import iSupportStuff.Version;
+import stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
+import stuffBeginnersDontHaveToUnderstand.Herald;
+import stuffBeginnersDontHaveToUnderstand.Version;
 
 
 
 
 
-//##**
+/**
  * The VERY TestFrame - the official testframe deciding over acceptance or not.<br />
  * <br />
  *
@@ -90,7 +92,7 @@ import iSupportStuff.Version;
  * @author  Michael Schaefers  ([UTF-8]:"Michael Schäfers");
  *          P1@Hamburg-UAS.eu 
  * @version {@value #encodedVersion} 
- XX#*#/
+ */
 @TestMethodOrder(OrderAnnotation.class)
 public class UnitTestFrameAndStarter {
     //
@@ -365,14 +367,14 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing isEmpty() primarily,
      * but also using and testing in some way:<br />
      * o) putNo(0)<br />
      * o) removeNo(0)<br />
      *
      * Additional heavy tests of getSize are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0010)
     public void basicTest_isEmpty(){
@@ -405,7 +407,7 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing getSize() primarily,
      * but also using and testing in some way:<br />
      * o) putNo(@Last)<br />
@@ -413,7 +415,7 @@ public class UnitTestFrameAndStarter {
      * o) isEmpty()<br />
      *
      * Additional heavy tests of getSize() are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0020)
     public void basicTest_getSize(){
@@ -459,11 +461,11 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing contains() primarily,
      * but also using and testing in some way:<br />
      * o) put(@Last)<br />
-     XX#*#/
+     */
     @Test
     @Order(100_0030)
     public void basicTest_contains(){
@@ -505,14 +507,14 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing clear() primarily,
      * but also using and testing in some way:<br />
      * o) contains()<br />
      * o) getSize()<br />
      * o) isEmpty()<br />
      * o) put(@First)<br />
-     XX#*#/
+     */
     @Test
     @Order(100_0040)
     public void basicTest_clear(){
@@ -550,13 +552,13 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing putNo() primarily,
      * but also using and testing in some way:<br />
      * o) contains()<br />
      *
      * Additional heavy tests of putNo() are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0050)
     public void basicTest_putNo(){
@@ -606,13 +608,13 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing getNo() primarily,
      * but also using and testing in some way:<br />
      * o) putNo()<br />
      *
      * Additional heavy tests of getNo() are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0060)
     public void basicTest_getNo(){
@@ -650,14 +652,14 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing removeNo() primarily,
      * but also using and testing in some way:<br />
      * o) contains()<br />
      * o) putNo()<br />
      *
      * Additional heavy tests of removeNo() are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0070)
     public void basicTest_removeNo(){
@@ -696,12 +698,12 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing remove() primarily,
      * but also using and testing in some way:<br />
      * o) contains()<br />
      * o) putNo()<br />
-     XX#*#/
+     */
     @Test
     @Order(100_0075)
     public void basicTest_remove(){
@@ -769,14 +771,14 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing setNo() primarily,
      * but also using and testing in some way:<br />
      * o) contains()<br />
      * o) putNo()<br />
      *
      * Additional heavy tests of setNo() are done in the random based copy around tests
-     XX#*#/
+     */
     @Test
     @Order(100_0080)
     public void basicTest_setNo(){
@@ -818,7 +820,7 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * basic test : testing simple access sequence
      * but also using and testing in some way:<br />
      * o) contains()<br />
@@ -827,7 +829,7 @@ public class UnitTestFrameAndStarter {
      *
      * trying to entrap usage of prev pointer to detect errors related to prev pointer
      * test is from Axel Schmolitzky, since combinedTest_copyAround_randomBased() shall NOT have detected such error
-     XX#*#/
+     */
     @Test
     @Order(100_0100)
     public void basicTest_simpleAccessSequence(){
@@ -857,12 +859,12 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * Severe positive test : testing combiations of insert-, remove- and extract- operations.
      * This test is random based - meaning, that it's hard to reproduce an exactly same test.
      * If "numberOfRandomBasedTestRuns" is sufficient big, most
      * respectively probably each implementation error will be detected
-     XX#*#/
+     */
     @Test
     @Order(100_0210)
     public void combinedTest_copyAround_randomBased(){
@@ -1042,11 +1044,11 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * Severe positive test : testing setNo() primarily,
      * ...
      * ??? random based ???
-     XX#*#/
+     */
     @Test
     @Order(100_0220)
     public void test_setNo_randomBased(){
@@ -1113,9 +1115,9 @@ public class UnitTestFrameAndStarter {
     
     
     //##########################################################################
-    //##**
+    /**
      * Severe positive test : replacing disc by equal but NOT identical discs
-     XX#*#/
+     */
     @Test
     @Order(100_0230)
     public void test_replacingElementsByEqualElements_randomBased(){
@@ -1214,6 +1216,8 @@ public class UnitTestFrameAndStarter {
     }//method()
     
     
+    /*
+     
     
     //##########################################################################
     //##**
@@ -1463,6 +1467,5 @@ public class UnitTestFrameAndStarter {
             "computation took too long"
         );
     }//method()
-    
+     */
 }//class
-*/

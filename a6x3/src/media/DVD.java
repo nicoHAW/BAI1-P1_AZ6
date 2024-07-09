@@ -51,6 +51,6 @@ public class DVD extends Disc {
         
         //convert and check if same
         DVD other = (DVD) obj;
-        return (media == other.media) && (titel.equals(other.titel) && format.equals(other.format));
+        return (media == other.media) && (Objects.equals(titel, other.titel) && Objects.equals(format, other.format));
     }
 }

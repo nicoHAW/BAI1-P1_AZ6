@@ -60,6 +60,6 @@ public class CD extends Disc {
 
         //convert and check if same
         CD other = (CD) obj;
-        return (media == other.media) && (titel.equals(other.titel) && interpret.equals(other.interpret));
+        return (media == other.media) && (Objects.equals(titel, other.titel) && Objects.equals(interpret, other.interpret));
     }
 }

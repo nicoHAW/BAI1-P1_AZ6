@@ -69,11 +69,12 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         Node<T> work = head;
 
         // iterate through list until data found or end of list is reached
-        while (!work.data.equals(info) && work!=null) {
+        while (work!=null && !work.data.equals(info)) {
             work = work.next;
+            
         } //while
 
-        return (work.data.equals(info));            //returns if data are equal
+        return (work != null) ? work.data.equals(info) : false;             //returns if data are equal
     }
 
 
@@ -86,15 +87,15 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         assert this.listSize >= requestedPosition : "position out of range";
 
         Node<T> newNode = new Node<T>(info);    //create new node with info as data
-        this.listSize++;                        //increase ListSize after adding new Nose.
+
 
         // special cases
         if (this.listSize == 0) {   //only object in List.
             head = newNode;
             tail = newNode;
         } else if ( requestedPosition == 0 ) {  //new first object in List.
-            head.prev = newNode;
             newNode.next = head;
+            head.prev = newNode;
             head = newNode;
         } else if ( requestedPosition == this.listSize ) {  //new last objct in List
             tail.next = newNode;
@@ -108,13 +109,14 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             tempNode.prev.next = newNode;   // make prevs next new node 
             tempNode.prev = newNode;        // make newNode old nodes prev
         } //ifelse
+        this.listSize++;                        //increase ListSize after adding new Nose.
     } //putNo
 
     @Override
     public T setNo(int requestedPosition, T info) {
         //--- asserts ---
         assert info != null : "Data can't be null";
-        assert this.listSize >= requestedPosition : "requestedPosition out of List";
+        assert this.listSize > requestedPosition : "requestedPosition out of List";
 
 
         Node<T> tempNode = iGetNodeNo(requestedPosition);       //get Node from Position
@@ -133,10 +135,14 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         //--- assert ---
         assert info != null : "Data can't be null";
 
-        Node<T> tempNode = iSearchNode(info); // get Node with requested Data
+        Node<T> tempNode;
+        if (contains(info)) {
+            tempNode = iSearchNode(info); // get Node with requested Data
         tempNode.data = null;
-
-        return iRemoveNode(tempNode);       //remove Node and get boolean about success
+        return iRemoveNode(tempNode); //remove Node and get boolean about success
+        }
+        return false;
+                 
     } //
 
 
@@ -147,9 +153,8 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         //--- assert ---
         assert this.listSize > requstedPosition : "requstedPosition out of List";   //pos can't be bigger because position of last node is ListSize-1
 
-        if ( this.listSize > requstedPosition ) {         //last Object is listSize-1
+        if ( this.listSize > requstedPosition ) {         //last Object is listSize
             Node<T> tempNode = iGetNodeNo(requstedPosition); //get Node from position
-            tempNode.data = null;                            //set data to null
 
             iRemoveNode(tempNode);                          //delete Node 
         }//if
@@ -189,7 +194,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         Node<T> wantedNode=head;                        //start with head for pos = 0
 
         //go through nodes until pos is wanted pos.
-        for (int pos = 0; pos <= wantedPos; pos++) {
+        for (int pos = 0; pos < wantedPos; pos++) {
             wantedNode = wantedNode.next;               //iterate wantedNode through List
         } //for
 
@@ -199,6 +204,22 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
 
 
     private boolean iRemoveNode(Node<T> givenNode) {
+        if (this.listSize==0) {
+            return false;
+        }
+
+
+        //givenNode only Node (listSize == 1)
+        if (givenNode == head && givenNode == tail) { //given Node is only Node if next and prev are null also means that it's head and tail
+            this.head = null;                                   // make head null 
+            this.tail = null;                                   // make tail null
+
+            this.listSize--;                                     //decrease List Size
+
+            return true;
+        } //if
+
+
         //given Node first Node (head)
         if (givenNode == this.head) {           //Node is head if Node == head.
             Node<T> newHead = givenNode.next;   //create tempHead (next in List is new Head)
@@ -208,7 +229,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             this.listSize--;                    //decrease List Size
 
             return true;
-        }//iRemoveNode
+        }//if
 
 
         //givenNode is Last Node (tail)
@@ -223,16 +244,6 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         } //if
 
 
-        //givenNode only Node (listSize == 0)
-        if (givenNode.next == null && givenNode.prev == null) { //given Node is only Node if next and prev are null also means that it's head and tail
-            this.head = null;                                   // make head null 
-            this.tail = null;                                   // make tail null
-
-            this.listSize--;                                     //decrease List Size
-
-            return true;
-        } //if
-
 
         //givenNode between nodes
         if (givenNode != this.head && givenNode != this.tail ) {
@@ -241,8 +252,14 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             Node<T> nextNode = givenNode.next;      //next Node of given Node
 
             //bypass given Node
-            prevNode.next = nextNode;               //make current next to next of prev
-            nextNode.prev = prevNode;               //make current prev to prev of next.
+
+            if (prevNode != null) {
+                prevNode.next = nextNode;               //make current next to next of prev
+            } //if
+
+            if (nextNode != null) {
+                nextNode.prev = prevNode;               //make current prev to prev of next.
+            }
 
             this.listSize--;                        //decrease List Size
 
@@ -259,4 +276,58 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         return listSize;
     }//getSize
 
-}
+    
+    
+    
+    
+    //----- PRINT -----
+    
+    @Override
+    public String toString() {
+       if (this.head != null ) {
+       return String.format("<%s> : size = %d, head = %s,   tail = %s,", System.class.getSimpleName(), this.listSize, this.head.data, this.tail.data);
+       } else return String.format("<%s> : size = %d, head = %s,   tail = %s,", System.class.getSimpleName(), this.listSize, this.head, this.tail);
+    }
+    
+    
+    public void printElemFirstToLast() {
+        
+        if (this.listSize == 0) {
+            System.out.printf("Size: %d; Liste Leer", this.listSize);
+        }
+        Node<T> currentNode = head;
+        int pos = 0;
+        while (currentNode != null) {
+            System.out.printf("<pos %d>: %s\n", pos, currentNode.data);
+            pos++;
+            currentNode = currentNode.next;
+        }
+    }
+    
+    private void printNodeFirstToLast() {
+        Node<T> currentNode = head;
+        while (currentNode != null) {
+            System.out.printf("%s", currentNode); // Gibt die Knotenobjekte selbst aus
+            currentNode = currentNode.next;
+        }
+    }
+    
+    public void getHead() {
+       
+        if (this.head != null) {
+        System.out.printf("\n<head>: %s, headNext: %s \n", this.head.data, this.head.next.data);
+        } else {
+            System.out.printf("\n<head>: %s \n", this.head);
+        }
+    }//getHead
+    
+    public void getTail() {
+        if (this.tail != null) {
+        System.out.printf("\n<Tail>: %s, TailPrev: %s \n", this.tail.data, this.tail.prev.data);
+        } else {
+            System.out.printf("\n<Tail>: %s \n", this.tail);
+        }
+    }//getHead
+    
+    
+}//class

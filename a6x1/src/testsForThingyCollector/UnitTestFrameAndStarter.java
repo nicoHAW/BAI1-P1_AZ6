@@ -118,6 +118,39 @@ public class UnitTestFrameAndStarter {
     // o) Ist Collection, die als Ergebnis von process() abgeliefert wird, geeignet?
     // ...
     
+    //----- Eigene Tests -----
+    
+    @Test
+    public void testDeliverSameObjects(){
+        
+        final Collector collector = new Collector();
+        
+        final Item[] ia = {
+            new Item( Color.BLACK, Size.LARGE,  Weight.HEAVY,  1L ),
+            new Item( Color.BLACK, Size.LARGE,  Weight.HEAVY,  1L ),
+            new Item( Color.BROWN, Size.SMALL,  Weight.LIGHT,  3L ),
+            new Item( Color.CYAN,  Size.SMALL,  Weight.HEAVY,  4L ),
+            new Item( Color.GOLD,  Size.MEDIUM, Weight.LIGHT,  5L )
+        };
+        for( int i=0; i<requestedNumberOfDifferentItems-1; i++ ){
+            collector.process( ia[i] );
+            
+            int memorySize = collector.getMemorySize();
+            assertEquals(1, memorySize); //Memory should be one because double stays in Memory
+            
+            int thingySet = collector.getThingySet();
+            assertEquals(4, thingySet); //thingy Set should be 4 because 1 is in memory   
+        }//for
+        
+        final Collection<Item> computedResult = collector.process( ia[requestedNumberOfDifferentItems-1] );
+        assertTrue( computedResult.size() == requestedNumberOfDifferentItems );
+        for( final Item item : ia ) {
+            assertTrue( computedResult.remove( item ));
+        }//for
+        assertTrue( computedResult.isEmpty() );
+    }//method()
+    
+    
 }//class
 //*##/
 

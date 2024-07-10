@@ -8,36 +8,43 @@ import _untouchable_.thingy.Item;
 public class Collector implements Collector_I {
 
     //----- VARIABLES -----
-    final private List<Item> memoryThingyList = new LinkedList<Item>();
-    final private Set<Item> uniqueThingysSet = new HashSet<Item>();
+    final private List<Item> memoryThingyList;     //stores double Items
+    final private Set<Item> uniqueThingysSet;         //stores unique Items
 
+    //CONSTRUCTOR
+    public Collector() {
+        memoryThingyList = new LinkedList<Item>();     //stores double Items
+        uniqueThingysSet = new HashSet<Item>();         //stores unique Items
+    }
 
 
     //----- METHODS -----
     @Override
     public Collection<Item> process(Item item) {
+        //--Asserts
+        assert item != null : "Item can't be null";
+        
+        //--TestPrint 
+        boolean test = true; //activate of deactive all Testprints
+        iPrintItem(test, item);   //printsWhat you got -> Check how List Sizes change
+        iPrintAll(test);            //prints Status of Lists (Size and content)
 
-        iCheckMemory();
 
-        //-- put in Set if already in Memory
+        //--CheckMemory
+        //If memory is not empty process Items in Memory first
+        if (!this.memoryThingyList.isEmpty()) {
+            iCheckMemory();
+        }//if
+
+
+        //--ChekDouble
+        //if same item in uniqueSet put in memory
         if( uniqueThingysSet.contains(item) ) {
             this.memoryThingyList.add(item);
         } else {
             this.uniqueThingysSet.add(item);
         }//ifelse
-
-
-
-
-        // --- TEST PRINT ---
-        boolean filthyTest = true;
-
-        if (filthyTest) {
-            System.out.printf("----- BEKOMMEN -----\n");
-            for ( Item temp : this.memoryThingyList ) {//gets every single itzem in memory and prints int.
-                System.out.printf("%7s  %7s  %7s  %5d  %14d\n\n", temp.getColor(), temp.getSize(), temp.getWeight(), temp.getValue(), temp.hashCode());
-            }//for
-        }//if
+        iPrintAll(test);
 
 
 
@@ -50,14 +57,32 @@ public class Collector implements Collector_I {
          * Deliver Set if Set has five thingys.
          * 
          */
-
         if (uniqueThingysSet.size() == 5) { 
-            iSchmuddelPrint(true); // Dirty Print - what is in Memory - What is in List? 
+            iPrintAll(test);
+            
             return uniqueThingysSet;
         }//if
 
         return null;
     }//method process
+
+
+
+
+    private void iCheckMemory() {
+        Iterator<Item> listIterator = this.memoryThingyList.iterator();
+        while (listIterator.hasNext()) {
+
+            Item tempItem = listIterator.next();
+
+            if (!uniqueThingysSet.contains(tempItem)) {
+                uniqueThingysSet.add(tempItem);
+                memoryThingyList.remove(tempItem); 
+            }//if
+        }//while
+    }//method: iCheckMemory
+
+
 
 
 
@@ -73,55 +98,56 @@ public class Collector implements Collector_I {
 
 
 
-    // --- TEST METHOD ---
-    private void iSchmuddelPrint(boolean test) {
-        if(test) {
-            //part that prints set
-            System.out.printf("----- RETURN LIST -----\n");
 
-            System.out.printf("Color       Size     Weight  Value     Hash \n");
-
-            for ( Item temp : this.uniqueThingysSet )
-                System.out.printf("%7s  %7s  %7s  %5d  %14d\n", temp.getColor(), temp.getSize(), temp.getWeight(), temp.getValue(), temp.hashCode());
-            System.out.printf("\n\n\n");
-
-            
-            
-            //part that prints what's in memory
-            System.out.printf("----- IN MEMORY -----\n");
-
-            System.out.printf("Color       Size     Weight  Value     Hash \n");
-
-            for ( Item temp : this.memoryThingyList )
-                System.out.printf("%7s  %7s  %7s  %5d  %14d\n", temp.getColor(), temp.getSize(), temp.getWeight(), temp.getValue(), temp.hashCode());
-            System.out.printf("\n\n\n");
-        }//if
-    }//method: schmuddelPrint
+    private void iPrintItem(boolean test, Item item) {
+        //part that prints set
+        System.out.printf("----- WHAT YOU GOT -----\n");
+        System.out.printf("%7s  %7s  %7s  %5d  %14d\n\n", item.getColor(), item.getSize(), item.getWeight(), item.getValue(), item.hashCode());
+    }//iPrintItem
 
 
 
-    private void iCheckMemory() {
-        for ( Item tempItem : this.memoryThingyList) {
-            if (!uniqueThingysSet.contains(tempItem)) {
-
-                uniqueThingysSet.add(tempItem);
-
-                iSchmuddelPrint(true); // Dirty Print - what is in Memory - What is in List?
-                memoryThingyList.remove(tempItem);
-
-                iSchmuddelPrint(true); // Dirty Print - what is in Memory - What is in List?
-            }//if
-        } //if
-    }//for
+    private void iPrintMemory(boolean test) {
+        //part that prints set
+        System.out.printf("----- STATUS LISTS -----\n");
+        System.out.printf("MEMORY-SIZE: %d\n\n", this.memoryThingyList.size());
+        System.out.printf("----- Memory Contains -----\n");
+        System.out.printf("%s\n\n", this.memoryThingyList.toString());
+    }//iPrintItem
 
 
-//----- GETTER -----
-public int getMemorySize() {
-    return this.memoryThingyList.size();
-}//getMemorySize
 
-public int getThingySet() {
-    return this.uniqueThingysSet.size();
-}//getMemorySet
+    private void iPrintUnique(boolean test) {
+        //part that prints set
+        System.out.printf("----- STATUS LISTS -----\n");
+        System.out.printf("THINGY-SET-SIZE: %d\n\n", this.uniqueThingysSet.size());
+        System.out.printf("----- Thingy-Set-Contains -----\n");
+        System.out.printf("%s\n\n", this.uniqueThingysSet.toString());
+    }//iPrintItem
+
+    private void iPrintAll(boolean test) {
+        iPrintMemory(test);
+        iPrintUnique(test);
+    }
+
+    public void iPrintMyTest(boolean test) {
+        if (test) {
+            System.out.printf("\n\n\n\n\n\n----- MEIN TEST AB HIER -----\n\n\n");
+        }
+    }
+
+
+
+    //----- GETTER -----
+    public int getMemorySize() {
+        return this.memoryThingyList.size();
+    }//getMemorySize
+
+    public int getThingySize() {
+        return this.uniqueThingysSet.size();
+    }//getMemorySet
+
+
+
 
 }//class

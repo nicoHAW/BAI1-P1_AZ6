@@ -197,8 +197,7 @@ public class UnitTestFrameAndStarter {
         public void testClear(){
 
             final Collector collector = new Collector();
-            collector.iPrintMyTest(true);
-
+            
             final Item[] ia = {
                     new Item( Color.BLACK, Size.LARGE,  Weight.HEAVY,  1L ),
                     new Item( Color.BLACK, Size.LARGE,  Weight.HEAVY,  1L ),

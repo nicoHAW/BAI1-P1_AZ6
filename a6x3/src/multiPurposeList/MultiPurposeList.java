@@ -13,9 +13,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
 
     //----- CONSTRUCTOR -----
     public MultiPurposeList() {
-        this.listSize = 0;
-        this.head = null; 
-        this.tail = null;
+       clear();
     }//constructor
 
 

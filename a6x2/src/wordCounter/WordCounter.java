@@ -4,7 +4,6 @@ import java.util.*;
 public class WordCounter {
 
     //----- VARIABLES -----
-    private String sourcePath;      //path of file. 
     private Map<Word, Counter> wordMap;     //Map for word and counter
 
 
@@ -22,46 +21,38 @@ public class WordCounter {
     public void printStatistic( String givenPath ) { 
 
         //variables
-        this.sourcePath = givenPath;
-        WordGrabber nextWord = new WordGrabber(sourcePath);
+        WordGrabber wordGrabber = new WordGrabber(givenPath);
 
         // get words from WordGrabber
-        while (nextWord.hasNext()) {
-            Word newWord = new Word(nextWord.next());
+        while (wordGrabber.hasNext()) {
+            Word currentWord = new Word(wordGrabber.next());
 
             // put Word in Map with new counter - if already existing increment Counter.
-            if (!this.wordMap.containsKey(newWord)) {
-                Counter newWordCounter = new Counter();
-                this.wordMap.put(newWord, newWordCounter);
-            } else this.wordMap.get(newWord).inc();
-
+            /*
+            Counter currentWordCounter = wordMap.putIfAbsent(currentWord, new Counter());
+            currentWordCounter.inc();
+            */
+            Counter currentWordCounter = wordMap.get(currentWord);
+            if ( currentWordCounter == null ) {
+                currentWordCounter = new Counter();
+                this.wordMap.put(currentWord, currentWordCounter);
+            } else currentWordCounter.inc();
         }//while
 
 
         // Convert Map to List
-        List<String> wordList = new ArrayList<String>();
-
-        // go through every single entry and put in list.
-        for (Map.Entry<Word, Counter> content : this.wordMap.entrySet() ) {
-            Word keyWord = content.getKey();
-            Counter counterWord = content.getValue();
-
-            //new string out of keyword and counter
-            String wordAndCounter = keyWord.toString() + counterWord.toString();
-
-            //add new string to list.
-            wordList.add(wordAndCounter);
-        }
+        //TODO Word verwenden
+        List<Word> wordList = new ArrayList<Word>(wordMap.keySet());
 
         //sort list
-        wordList.sort(null);;
-
-        //print list
-        for (String sorted : wordList) {
-            System.out.println(sorted);
-        }
-
-
+        Collections.sort(wordList);
+        
+      //print list
+        for (Word word : wordList) {
+            System.out.printf("\"%s\": %s \n", word, wordMap.get(word));
+        }//for
+        
+      
     }//printStatistics
 
 }

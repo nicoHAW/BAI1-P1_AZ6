@@ -61,7 +61,7 @@ public class myTest {
         DVD alienNTSC = new DVD( "alien", MOVIE, NTSC );
         DVD alienPAL = new DVD( "alien", MOVIE, PAL);
         DVD nicoTennis = new DVD( "Nico Tennis", VIDEO, NTSC );
-        DVD nicoPorn = new DVD( "Nico Tennis", AUDIO, NTSC );
+        DVD nicoTennisZwei = new DVD( "Nico Tennis", AUDIO, NTSC );
         DVD predator = new DVD( "Predator", MOVIE, PAL);
         DVD scream = new DVD( "Scream", MOVIE, NTSC );
         DVD haunted = new DVD( "Haunted House", MOVIE, PAL);
@@ -162,7 +162,7 @@ public class myTest {
         testListe.getHead();
         testListe.getTail();
         
-        System.out.printf("Liste enthält: %s? Ergebis: %b \n\n", nicoPorn, testListe.contains(nicoPorn));
+        System.out.printf("Liste enthält: %s? Ergebis: %b \n\n", nicoTennisZwei, testListe.contains(nicoTennisZwei));
         System.out.printf("Liste enthält: %s? Ergebis: %b \n\n", nicoTennis, testListe.contains(nicoTennis));
         System.out.printf("Liste enthält: %s? Ergebis: %b \n\n", alienNTSC, testListe.contains(alienNTSC));
         System.out.printf("Liste enthält: %s? Ergebis: %b \n\n", alienPAL, testListe.contains(alienPAL));
@@ -175,7 +175,7 @@ public class myTest {
    
      
         
-        testListe.remove(nicoPorn);
+        testListe.remove(nicoTennisZwei);
         testListe.printElemFirstToLast();
         System.out.printf("\n----------\n");
         

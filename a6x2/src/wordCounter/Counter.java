@@ -28,7 +28,7 @@ public class Counter {
 
 
     //----- GETTER -----
-    public int getcountValue() {
+    public int getCountValue() {
         return this.countValue;
     }//getCountValue
 

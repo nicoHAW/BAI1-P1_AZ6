@@ -23,9 +23,9 @@ public class Collector implements Collector_I {
     public Collection<Item> process(Item item) {
         //--Asserts
         assert item != null : "Item can't be null";
-        
+
         //--TestPrint 
-        boolean test = true; //activate of deactive all Testprints
+        boolean test = false; //activate of deactive all Testprints
         iPrintItem(test, item);   //printsWhat you got -> Check how List Sizes change
         iPrintAll(test);            //prints Status of Lists (Size and content)
 
@@ -39,10 +39,8 @@ public class Collector implements Collector_I {
 
         //--ChekDouble
         //if same item in uniqueSet put in memory
-        if( uniqueThingysSet.contains(item) ) {
+        if( !this.uniqueThingysSet.add(item) ) {
             this.memoryThingyList.add(item);
-        } else {
-            this.uniqueThingysSet.add(item);
         }//ifelse
         iPrintAll(test);
 
@@ -59,7 +57,7 @@ public class Collector implements Collector_I {
          */
         if (uniqueThingysSet.size() == 5) { 
             iPrintAll(test);
-            
+
             return uniqueThingysSet;
         }//if
 
@@ -75,8 +73,7 @@ public class Collector implements Collector_I {
 
             Item tempItem = listIterator.next();
 
-            if (!uniqueThingysSet.contains(tempItem)) {
-                uniqueThingysSet.add(tempItem);
+            if (uniqueThingysSet.add(tempItem)) {
                 memoryThingyList.remove(tempItem); 
             }//if
         }//while
@@ -101,40 +98,48 @@ public class Collector implements Collector_I {
 
     private void iPrintItem(boolean test, Item item) {
         //part that prints set
-        System.out.printf("----- WHAT YOU GOT -----\n");
-        System.out.printf("%7s  %7s  %7s  %5d  %14d\n\n", item.getColor(), item.getSize(), item.getWeight(), item.getValue(), item.hashCode());
+        if (test) {
+            System.out.printf("----- WHAT YOU GOT -----\n");
+            System.out.printf("%7s  %7s  %7s  %5d  %14d\n\n", item.getColor(), item.getSize(), item.getWeight(), item.getValue(), item.hashCode());
+        }//if
     }//iPrintItem
 
 
 
     private void iPrintMemory(boolean test) {
-        //part that prints set
-        System.out.printf("----- STATUS LISTS -----\n");
-        System.out.printf("MEMORY-SIZE: %d\n\n", this.memoryThingyList.size());
-        System.out.printf("----- Memory Contains -----\n");
-        System.out.printf("%s\n\n", this.memoryThingyList.toString());
+        if (test) {
+            //part that prints set
+            System.out.printf("----- STATUS LISTS -----\n");
+            System.out.printf("MEMORY-SIZE: %d\n\n", this.memoryThingyList.size());
+            System.out.printf("----- Memory Contains -----\n");
+            System.out.printf("%s\n\n", this.memoryThingyList.toString());
+        }
     }//iPrintItem
 
 
 
     private void iPrintUnique(boolean test) {
-        //part that prints set
-        System.out.printf("----- STATUS LISTS -----\n");
-        System.out.printf("THINGY-SET-SIZE: %d\n\n", this.uniqueThingysSet.size());
-        System.out.printf("----- Thingy-Set-Contains -----\n");
-        System.out.printf("%s\n\n", this.uniqueThingysSet.toString());
+        if (test) {
+            //part that prints set
+            System.out.printf("----- STATUS LISTS -----\n");
+            System.out.printf("THINGY-SET-SIZE: %d\n\n", this.uniqueThingysSet.size());
+            System.out.printf("----- Thingy-Set-Contains -----\n");
+            System.out.printf("%s\n\n", this.uniqueThingysSet.toString());
+        }
     }//iPrintItem
 
     private void iPrintAll(boolean test) {
-        iPrintMemory(test);
-        iPrintUnique(test);
-    }
+        if (test) {
+            iPrintMemory(test);
+            iPrintUnique(test);
+        }//if
+    }//iPrintAll
 
     public void iPrintMyTest(boolean test) {
         if (test) {
             System.out.printf("\n\n\n\n\n\n----- MEIN TEST AB HIER -----\n\n\n");
-        }
-    }
+        }//if
+    }//iPrintMyTest
 
 
 

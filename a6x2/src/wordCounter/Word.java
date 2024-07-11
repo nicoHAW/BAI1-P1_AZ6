@@ -1,6 +1,6 @@
 package wordCounter;
 
-public class Word {
+public class Word implements Comparable<Word>{
 
     //----- VARIABLES -----
     private String word;
@@ -22,14 +22,6 @@ public class Word {
     }//getWord
 
 
-
-    public int compareTo(String other) {
-        return this.word.compareTo(other);
-    }
-
-    
-    
-    
     //---- OVERRIDE METHODS -----
     @Override
     public boolean equals( Object other ) {
@@ -59,7 +51,15 @@ public class Word {
 
     @Override
     public String toString() {
-        return String.format("<%s>: ", word);
+        return word;
     }//toString
+
+
+
+
+    @Override
+    public int compareTo(Word otherWord) {
+        return this.word.compareTo(otherWord.word)  ;
+    }//compareTo
 
 }

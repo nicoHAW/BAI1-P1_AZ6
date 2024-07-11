@@ -5,8 +5,8 @@ import java.util.Objects;
 public class Disc {
 
     //----- VARIABLES -----
-   final String titel;
-   final Content media;
+   private final String titel;
+   private final Content media;
     
     
     
